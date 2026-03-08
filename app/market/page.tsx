@@ -1,6 +1,6 @@
-﻿'use client';
+'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { BottomNavigation } from '@/components/BottomNavigation';
 import { TrendingUp, TrendingDown, Droplets } from 'lucide-react';
@@ -35,7 +35,7 @@ const topCrops = [
   { name: 'Maize', price: 29.4, unit: '/kg', trend: 'down', change: -0.6 },
 ] as const;
 
-export default function MarketPage() {
+function MarketPage() {
   const searchParams = useSearchParams();
   const [language, setLanguage] = useState<'EN' | 'TA'>('EN');
   const t = uiText[language];
@@ -151,5 +151,13 @@ export default function MarketPage() {
 
       <BottomNavigation />
     </motion.div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <MarketPage />
+    </Suspense>
   );
 }
