@@ -68,7 +68,7 @@ export function BottomNavigation() {
     }
   }, [pathname]);
 
-  const items: NavItem[] = navItems[language];
+const items: readonly NavItem[] = navItems[language];
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
