@@ -22,14 +22,14 @@ export function ChatBubble({
 }: ChatBubbleProps) {
   const isUser = type === 'user';
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1]  },
-    },
-  };
+const containerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3 },
+  },
+} as const;
 
   const formatTime = (date?: Date) => {
     if (!date) return '';
