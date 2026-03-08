@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { BottomNavigation } from '@/components/BottomNavigation';
 import { motion } from 'framer-motion';
 import { mockChatHistory, mockAIResponses } from '@/data/mockData';
@@ -70,7 +70,7 @@ const cardDesign = [
   { icon: TrendingUp, tone: 'from-primary/15 to-accent/10' },
 ];
 
-export default function AssistantPage() {
+function AssistantPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const userQuery = searchParams.get('q')?.trim() ?? '';
@@ -417,5 +417,13 @@ export default function AssistantPage() {
 
       <BottomNavigation />
     </motion.div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <AssistantPage />
+    </Suspense>
   );
 }
