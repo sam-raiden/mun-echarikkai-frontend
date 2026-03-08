@@ -1,13 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { QuestionCard } from '@/components/QuestionCard';
 import { motion } from 'framer-motion';
 import { mockCrops, mockCropProblems } from '@/data/mockData';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 
-export default function MissingInfoPage() {
+function MissingInfoPage() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -200,5 +200,13 @@ export default function MissingInfoPage() {
         </p>
       </motion.div>
     </motion.div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <MissingInfoPage />
+    </Suspense>
   );
 }
